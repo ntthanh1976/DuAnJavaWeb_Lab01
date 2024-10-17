@@ -4,7 +4,7 @@
  */
 package model;
 
-import common.DbContext;
+import context.DbContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -1,4 +1,4 @@
-package common;
+package context;
 import java.sql.*;
 
 public class DbContext {
