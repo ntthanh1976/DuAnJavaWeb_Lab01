@@ -1,5 +1,6 @@
- <footer class="container">
-            <strong>&copy; 2023 - Student Name - Id </strong>
+<%@page pageEncoding="UTF-8" %>
+<footer class="container">
+            <strong>&copy; 2024 - Họ tên sinh viên - Mã số sinh viên </strong>
         </footer>
 
         <!-- Optional JavaScript -->
