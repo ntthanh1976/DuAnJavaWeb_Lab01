@@ -29,7 +29,7 @@ public class HoaDAO {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                 ds.add(new Hoa(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getInt(5), rs.getDate(6)));
+                ds.add(new Hoa(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getInt(5), rs.getDate(6)));
             }
         } catch (Exception ex) {
             System.out.println("Loi:" + ex.toString());
@@ -53,8 +53,8 @@ public class HoaDAO {
             System.out.println("Loi:" + ex.toString());
         }
         return ds;
-    }  
-    
+    }
+
     //phuong thuc doc tat ca san pham (Hoa) từ CSDL
     public ArrayList<Hoa> getAll() {
         ArrayList<Hoa> ds = new ArrayList<>();
@@ -64,17 +64,16 @@ public class HoaDAO {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                 ds.add(new Hoa(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getInt(5), rs.getDate(6)));
+                ds.add(new Hoa(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getInt(5), rs.getDate(6)));
             }
         } catch (Exception ex) {
             System.out.println("Loi:" + ex.toString());
         }
         return ds;
     }
-    
+
     //phuong thuc them mới sản phẩm (Hoa)
-    public boolean Insert (Hoa hoa)
-    {
+    public boolean Insert(Hoa hoa) {
         String sql = "insert into hoa (tenhoa,gia,hinh,maloai,ngaycapnhat) values (?,?,?,?,?)";
         conn = DbContext.getConnection();
         try {
@@ -85,17 +84,17 @@ public class HoaDAO {
             ps.setInt(4, hoa.getMaloai());
             ps.setDate(5, hoa.getNgaycapnhat());
             int kq = ps.executeUpdate();
-            if(kq>0)
-               return true;
+            if (kq > 0) {
+                return true;
+            }
         } catch (Exception ex) {
             System.out.println("Loi:" + ex.toString());
         }
         return false;
     }
-    
-     //phuong thuc cập nhật sản phẩm (Hoa)
-    public boolean Update (Hoa hoa)
-    {
+
+    //phuong thuc cập nhật sản phẩm (Hoa)
+    public boolean Update(Hoa hoa) {
         String sql = "update hoa set tenhoa=?,gia=?,hinh=?,maloai=?,ngaycapnhat=? where mahoa=?";
         conn = DbContext.getConnection();
         try {
@@ -107,34 +106,35 @@ public class HoaDAO {
             ps.setDate(5, hoa.getNgaycapnhat());
             ps.setInt(6, hoa.getMahoa());
             int kq = ps.executeUpdate();
-            if(kq>0)
-               return true;
+            if (kq > 0) {
+                return true;
+            }
         } catch (Exception ex) {
             System.out.println("Loi:" + ex.toString());
         }
         return false;
     }
-    
+
     //phuong thuc xoá sản phẩm (Hoa)
-    public boolean Delete (int mahoa)
-    {
+    public boolean Delete(int mahoa) {
         String sql = "delete from hoa where mahoa=?";
         conn = DbContext.getConnection();
         try {
-            ps = conn.prepareStatement(sql);           
-            ps.setInt(1, mahoa);           
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, mahoa);
             int kq = ps.executeUpdate();
-            if(kq>0)
-               return true;
+            if (kq > 0) {
+                return true;
+            }
         } catch (Exception ex) {
             System.out.println("Loi:" + ex.toString());
         }
         return false;
-    } 
-    
+    }
+
     //phuong thuc lấy thông tin sản phẩm (Hoa) theo mã hoa 
     public Hoa getById(int mahoa) {
-        Hoa kq=null;
+        Hoa kq = null;
         String sql = "select * from Hoa where mahoa=?";
         conn = DbContext.getConnection();
         try {
@@ -142,7 +142,7 @@ public class HoaDAO {
             ps.setInt(1, mahoa);
             rs = ps.executeQuery();
             if (rs.next()) {
-                kq =new Hoa(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getInt(5), rs.getDate(6));
+                kq = new Hoa(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getInt(5), rs.getDate(6));
             }
         } catch (Exception ex) {
             System.out.println("Loi:" + ex.toString());
@@ -156,13 +156,12 @@ public class HoaDAO {
         ArrayList<Hoa> dsHoa = hoaDao.getAll();
         for (Hoa hoa : dsHoa) {
             System.out.println(hoa);
-        }  
-        
+        }
+
         //tìm hoa theo mahoa=1
         System.out.println("Tim hoa co mahoa=1");
         Hoa kq = hoaDao.getById(1);
-        if(kq!=null)
-        {
+        if (kq != null) {
             System.out.println(kq);
         }
     }
